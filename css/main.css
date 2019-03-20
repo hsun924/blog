@@ -946,11 +946,6 @@ pre .javascript .function {
 .post-body .tabs .tab-content .tab-pane.active {
   display: block !important;
 }
-.pdfobject-container {
-  position: relative;
-  overflow: auto;
-  width: 100%;
-}
 .btn {
   display: inline-block;
   padding: 0 20px;
@@ -1927,7 +1922,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #5e9aff;
+  background: #ffff0a;
 }
 .links-of-blogroll {
   font-size: 13px;

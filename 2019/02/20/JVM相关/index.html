@@ -634,7 +634,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -691,7 +691,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">20</span>
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -746,7 +748,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1001,54 +1005,8 @@
   
 
   
-<script>
-if ($('body').find('div.pdf').length) {
-  $.ajax({
-    type: 'GET',
-    url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
-    dataType: 'script',
-    cache: true,
-    success: function() {
-      $('body').find('div.pdf').each(function(i, o) {
-        PDFObject.embed($(o).attr('target'), $(o), {
-          pdfOpenParams: {
-            navpanes: 0,
-            toolbar: 0,
-            statusbar: 0,
-            pagemode: 'thumbs',
-            view: 'FitH'
-          },
-          PDFJS_URL: '/lib/pdf/web/viewer.html',
-          height: $(o).attr('height') || '500px'
-        });
-      });
-    },
-  });
-}
-</script>
-
 
   
-<script>
-if ($('body').find('pre.mermaid').length) {
-  $.ajax({
-    type: 'GET',
-    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
-    dataType: 'script',
-    cache: true,
-    success: function() {
-      mermaid.initialize({
-        theme: 'forest',
-        logLevel: 3,
-        flowchart: { curve: 'linear' },
-        gantt: { axisFormat: '%m/%d/%Y' },
-        sequence: { actorMargin: 50 }
-      });
-    }
-  });
-}
-</script>
-
 
   
 

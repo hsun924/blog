@@ -105,28 +105,25 @@
 
 
 
-  <meta name="description" content="安装ErlangRabbitMQ是基于Erlang的，所以首先必须配置Erlang环境。从Erlang的官网http://www.erlang.org/download.html下载最新的erlang安装包,我下载的版本是otp_src_18.3.tar.gz 下载后解压进入otp_src_18.3执行以下命令 (不用Java编译，故去掉java避免错误)1./configure --prefix">
-<meta name="keywords" content="RabbitMQ">
+  <meta name="description" content="类加载统计123➜  ~ jstat -class 14132Loaded  Bytes  Unloaded  Bytes     Time 12920 23872.8        2     2.7      13.58  Loaded:加载class的数量 Bytes：所占用空间大小 Unloaded：未加载数量 Bytes:未加载占用空间 Time：时间  编译统计123➜  ~ jsta">
+<meta name="keywords" content="JDK,JVM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Centos安装RabbitMQ">
-<meta property="og:url" content="http://www.hsuns.com/2016/06/13/Centos安装RabbitMQ/index.html">
+<meta property="og:title" content="jstat执行样例分析">
+<meta property="og:url" content="http://www.hsuns.com/2019/04/16/jstat执行样例分析/index.html">
 <meta property="og:site_name" content="hsun">
-<meta property="og:description" content="安装ErlangRabbitMQ是基于Erlang的，所以首先必须配置Erlang环境。从Erlang的官网http://www.erlang.org/download.html下载最新的erlang安装包,我下载的版本是otp_src_18.3.tar.gz 下载后解压进入otp_src_18.3执行以下命令 (不用Java编译，故去掉java避免错误)1./configure --prefix">
+<meta property="og:description" content="类加载统计123➜  ~ jstat -class 14132Loaded  Bytes  Unloaded  Bytes     Time 12920 23872.8        2     2.7      13.58  Loaded:加载class的数量 Bytes：所占用空间大小 Unloaded：未加载数量 Bytes:未加载占用空间 Time：时间  编译统计123➜  ~ jsta">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/hsun924/imgs/master/20190316170040.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/hsun924/imgs/master/20190316170840.png">
-<meta property="og:updated_time" content="2019-03-16T09:10:40.360Z">
+<meta property="og:updated_time" content="2019-04-16T12:11:44.229Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Centos安装RabbitMQ">
-<meta name="twitter:description" content="安装ErlangRabbitMQ是基于Erlang的，所以首先必须配置Erlang环境。从Erlang的官网http://www.erlang.org/download.html下载最新的erlang安装包,我下载的版本是otp_src_18.3.tar.gz 下载后解压进入otp_src_18.3执行以下命令 (不用Java编译，故去掉java避免错误)1./configure --prefix">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/hsun924/imgs/master/20190316170040.png">
+<meta name="twitter:title" content="jstat执行样例分析">
+<meta name="twitter:description" content="类加载统计123➜  ~ jstat -class 14132Loaded  Bytes  Unloaded  Bytes     Time 12920 23872.8        2     2.7      13.58  Loaded:加载class的数量 Bytes：所占用空间大小 Unloaded：未加载数量 Bytes:未加载占用空间 Time：时间  编译统计123➜  ~ jsta">
 
 
 
 
 
 
-  <link rel="canonical" href="http://www.hsuns.com/2016/06/13/Centos安装RabbitMQ/">
+  <link rel="canonical" href="http://www.hsuns.com/2019/04/16/jstat执行样例分析/">
 
 
 
@@ -136,7 +133,7 @@
   };
 </script>
 
-  <title>Centos安装RabbitMQ | hsun</title>
+  <title>jstat执行样例分析 | hsun</title>
   
 
 
@@ -369,7 +366,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.hsuns.com/2016/06/13/Centos安装RabbitMQ/">
+    <link itemprop="mainEntityOfPage" href="http://www.hsuns.com/2019/04/16/jstat执行样例分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hsun">
@@ -386,7 +383,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Centos安装RabbitMQ
+          <h1 class="post-title" itemprop="name headline">jstat执行样例分析
 
               
             
@@ -412,24 +409,12 @@
                 
               
 
-              <time title="创建时间：2016-06-13 09:01:15" itemprop="dateCreated datePublished" datetime="2016-06-13T09:01:15+08:00">2016-06-13</time>
+              <time title="创建时间：2019-04-16 20:09:59 / 修改时间：20:11:44" itemprop="dateCreated datePublished" datetime="2019-04-16T20:09:59+08:00">2019-04-16</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-16 17:10:40" itemprop="dateModified" datetime="2019-03-16T17:10:40+08:00">2019-03-16</time>
               
             
           </span>
@@ -446,7 +431,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/RabbitMQ/" itemprop="url" rel="index"><span itemprop="name">RabbitMQ</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JDK/" itemprop="url" rel="index"><span itemprop="name">JDK</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JDK/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a></span>
 
                 
                 
@@ -481,21 +473,150 @@
       
 
       
-        <h1 id="安装Erlang"><a href="#安装Erlang" class="headerlink" title="安装Erlang"></a>安装Erlang</h1><p>RabbitMQ是基于Erlang的，所以首先必须配置Erlang环境。<br>从Erlang的官网<a href="http://www.erlang.org/download.html" target="_blank" rel="noopener">http://www.erlang.org/download.html</a>下载最新的erlang安装包,我下载的版本是otp_src_18.3.tar.gz</p>
-<p>下载后解压<br>进入<em>otp_src_18.3</em>执行以下命令 (不用Java编译，故去掉java避免错误)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/opt/erlang --without-javac</span><br></pre></td></tr></table></figure></p>
-<p>出现如下错误<br><img src="https://raw.githubusercontent.com/hsun924/imgs/master/20190316170040.png" alt></p>
-<p>根据错误提示，安装缺失依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ make perl ncurses-devel openssl-devel nixODBC unixODBC-devel</span><br></pre></td></tr></table></figure></p>
-<p>编译<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure></p>
-<p>安装完成后进入/opt/erlang/bin，执行./erl测试是否安装成功</p>
-<p>增加环境变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#set erlang environment</span><br><span class="line">export PATH=$PATH:/opt/erlang/bin</span><br></pre></td></tr></table></figure></p>
-<p>source profile使得文件生效</p>
-<h1 id="安装RabbitMQ"><a href="#安装RabbitMQ" class="headerlink" title="安装RabbitMQ"></a>安装RabbitMQ</h1><p>下载<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.rabbitmq.com/releases/rabbitmq-server/v3.6.2/rabbitmq-server-3.6.2-1.noarch.rpm</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rpm --import https://www.rabbitmq.com/rabbitmq-release-signing-key.asc</span><br><span class="line">yum install rabbitmq-server-3.6.2-1.noarch.rpm</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/hsun924/imgs/master/20190316170840.png" alt><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm --nodeps -Uvh rabbitmq-server-3.6.2-1.noarch.rpm</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/lib/rabbitmq/bin/rabbitmq-server start</span><br></pre></td></tr></table></figure>
-<h1 id="管理界面"><a href="#管理界面" class="headerlink" title="管理界面"></a>管理界面</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./rabbitmq-plugins list</span><br><span class="line">./rabbitmq-plugins enable rabbitmq_management</span><br></pre></td></tr></table></figure>
-<p>默认guest/guest<br>只能本地访问</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./rabbitmqctl add_user hsun hsun</span><br><span class="line">./rabbitmqctl set_user_tags hsun administrator</span><br><span class="line">./rabbitmqctl set_permissions -p / hsun &quot;.*&quot; &quot;.*&quot; &quot;.*&quot;</span><br></pre></td></tr></table></figure>
+        <p>类加载统计<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ jstat -class 14132</span><br><span class="line">Loaded  Bytes  Unloaded  Bytes     Time</span><br><span class="line"> 12920 23872.8        2     2.7      13.58</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Loaded:加载class的数量</li>
+<li>Bytes：所占用空间大小</li>
+<li>Unloaded：未加载数量</li>
+<li>Bytes:未加载占用空间</li>
+<li>Time：时间</li>
+</ul>
+<p>编译统计<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ jstat -compiler 14132</span><br><span class="line">Compiled Failed Invalid   Time   FailedType FailedMethod</span><br><span class="line">    9288      2       0    60.19          1 java/text/SimpleDateFormat subFormat</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Compiled：编译数量</li>
+<li>Failed：失败数量</li>
+<li>Invalid：不可用数量</li>
+<li>Time：时间</li>
+<li>FailedType：失败类型</li>
+<li>FailedMethod：失败的方法</li>
+</ul>
+<p>垃圾回收统计<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ jstat -gc 14132</span><br><span class="line"> S0C    S1C    S0U    S1U      EC       EU        OC         OU       MC     MU    CCSC   CCSU   YGC     YGCT    FGC    FGCT     GCT</span><br><span class="line">57856.0 72704.0  0.0    0.0   1162240.0 404804.0  314368.0   122952.6  59160.0 58193.9 7344.0 7111.0     10    0.515   3      0.718    1.233</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>S0C：第一个幸存区的大小</li>
+<li>S1C：第二个幸存区的大小</li>
+<li>S0U：第一个幸存区的使用大小</li>
+<li>S1U：第二个幸存区的使用大小</li>
+<li>EC：伊甸园区的大小</li>
+<li>EU：伊甸园区的使用大小</li>
+<li>OC：老年代大小</li>
+<li>OU：老年代使用大小</li>
+<li>MC：方法区大小</li>
+<li>MU：方法区使用大小</li>
+<li>CCSC:压缩类空间大小</li>
+<li>CCSU:压缩类空间使用大小</li>
+<li>YGC：年轻代垃圾回收次数</li>
+<li>YGCT：年轻代垃圾回收消耗时间</li>
+<li>FGC：Full GC回收次数</li>
+<li>FGCT：Full GC回收消耗时间</li>
+<li>GCT：垃圾回收消耗总时间</li>
+</ul>
+<p>堆内存统计<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ jstat -gccapacity 14132</span><br><span class="line"> NGCMN    NGCMX     NGC     S0C   S1C       EC      OGCMN      OGCMX       OGC         OC       MCMN     MCMX      MC     CCSMN    CCSMX     CCSC    YGC    FGC</span><br><span class="line"> 87040.0 1397760.0 1397760.0 57856.0 72704.0 1162240.0   175104.0  2796544.0   314368.0   314368.0      0.0 1101824.0  59160.0      0.0 1048576.0   7344.0     10     3</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>NGCMN：新生代最小容量</li>
+<li>NGCMX：新生代最大容量</li>
+<li>NGC：当前新生代容量</li>
+<li>S0C：第一个幸存区大小</li>
+<li>S1C：第二个幸存区的大小</li>
+<li>EC：伊甸园区的大小</li>
+<li>OGCMN：老年代最小容量</li>
+<li>OGCMX：老年代最大容量</li>
+<li>OGC：当前老年代大小</li>
+<li>OC:当前老年代大小</li>
+<li>MCMN:最小元数据容量</li>
+<li>MCMX：最大元数据容量</li>
+<li>MC：当前元数据空间大小</li>
+<li>CCSMN：最小压缩类空间大小</li>
+<li>CCSMX：最大压缩类空间大小</li>
+<li>CCSC：当前压缩类空间大小</li>
+<li>YGC：年轻代gc次数</li>
+<li>FGC：Full GC次数</li>
+</ul>
+<p>新生代垃圾回收统计<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ jstat -gcnew 14132</span><br><span class="line"> S0C    S1C    S0U    S1U   TT MTT  DSS      EC       EU     YGC     YGCT</span><br><span class="line">57856.0 72704.0    0.0    0.0  1  15 72704.0 1162240.0 511152.2     10    0.515</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>S0C：第一个幸存区大小</li>
+<li>S1C：第二个幸存区的大小</li>
+<li>S0U：第一个幸存区的使用大小</li>
+<li>S1U：第二个幸存区的使用大小</li>
+<li>TT:对象在新生代存活的次数</li>
+<li>MTT:对象在新生代存活的最大次数</li>
+<li>DSS:期望的幸存区大小</li>
+<li>EC：伊甸园区的大小</li>
+<li>EU：伊甸园区的使用大小</li>
+<li>YGC：年轻代垃圾回收次数</li>
+<li>YGCT：年轻代垃圾回收消耗时间</li>
+</ul>
+<p>新生代内存统计<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ jstat -gcnewcapacity 14132</span><br><span class="line">  NGCMN      NGCMX       NGC      S0CMX     S0C     S1CMX     S1C       ECMX        EC      YGC   FGC</span><br><span class="line">   87040.0  1397760.0  1397760.0 465920.0  57856.0 465920.0  72704.0  1396736.0  1162240.0    10     3</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>NGCMN：新生代最小容量</li>
+<li>NGCMX：新生代最大容量</li>
+<li>NGC：当前新生代容量</li>
+<li>S0CMX：最大幸存1区大小</li>
+<li>S0C：当前幸存1区大小</li>
+<li>S1CMX：最大幸存2区大小</li>
+<li>S1C：当前幸存2区大小</li>
+<li>ECMX：最大伊甸园区大小</li>
+<li>EC：当前伊甸园区大小</li>
+<li>YGC：年轻代垃圾回收次数</li>
+<li>FGC：Full GC回收次数</li>
+</ul>
+<p>老年代垃圾回收统计<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ jstat -gcold 14132</span><br><span class="line">   MC       MU      CCSC     CCSU       OC          OU       YGC    FGC    FGCT     GCT</span><br><span class="line"> 59160.0  58193.9   7344.0   7111.0    314368.0    122952.6     10     3    0.718    1.233</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>MC：方法区大小</li>
+<li>MU：方法区使用大小</li>
+<li>CCSC:压缩类空间大小</li>
+<li>CCSU:压缩类空间使用大小</li>
+<li>OC：老年代大小</li>
+<li>OU：老年代使用大小</li>
+<li>YGC：年轻代垃圾回收次数</li>
+<li>FGC：Full GC回收次数</li>
+<li>FGCT：Full GC回收消耗时间</li>
+<li>GCT：垃圾回收消耗总时间</li>
+</ul>
+<p>老年代内存统计<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ jstat -gcoldcapacity 14132</span><br><span class="line">   OGCMN       OGCMX        OGC         OC       YGC   FGC    FGCT     GCT</span><br><span class="line">   175104.0   2796544.0    314368.0    314368.0    10     3    0.718    1.233</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>OGCMN：老年代最小容量</li>
+<li>OGCMX：老年代最大容量</li>
+<li>OGC：当前老年代大小</li>
+<li>OC：老年代大小</li>
+<li>YGC：年轻代垃圾回收次数</li>
+<li>FGC：Full GC回收次数</li>
+<li>FGCT：Full GC回收消耗时间</li>
+<li>GCT：垃圾回收消耗总时间</li>
+</ul>
+<p>元数据空间统计<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ jstat -gcmetacapacity 14132</span><br><span class="line">   MCMN       MCMX        MC       CCSMN      CCSMX       CCSC     YGC   FGC    FGCT     GCT</span><br><span class="line">       0.0  1101824.0    59160.0        0.0  1048576.0     7344.0    10     3    0.718    1.233</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>MCMN: 最小元数据容量</li>
+<li>MCMX：最大元数据容量</li>
+<li>MC：当前元数据空间大小</li>
+<li>CCSMN：最小压缩类空间大小</li>
+<li>CCSMX：最大压缩类空间大小</li>
+<li>CCSC：当前压缩类空间大小</li>
+<li>YGC：年轻代垃圾回收次数</li>
+<li>FGC：Full GC回收次数</li>
+<li>FGCT：Full GC回收消耗时间</li>
+<li>GCT：垃圾回收消耗总时间</li>
+</ul>
+<p>总结垃圾回收统计<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ jstat -gcutil 14132</span><br><span class="line">  S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT</span><br><span class="line">  0.00   0.00  36.83  39.11  98.37  96.83     10    0.515     3    0.718    1.233</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>S0：幸存1区当前使用比例</li>
+<li>S1：幸存2区当前使用比例</li>
+<li>E：伊甸园区使用比例</li>
+<li>O：老年代使用比例</li>
+<li>M：元数据区使用比例</li>
+<li>CCS：压缩使用比例</li>
+<li>YGC：年轻代垃圾回收次数</li>
+<li>FGC：Full GC回收次数</li>
+<li>FGCT：Full GC回收消耗时间</li>
+<li>GCT：垃圾回收消耗总时间</li>
+</ul>
+<p>JVM编译方法统计<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ jstat -printcompilation 14132</span><br><span class="line">Compiled  Size  Type Method</span><br><span class="line">    9532      5    1 org/quartz/plugins/history/LoggingJobHistoryPlugin getName</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Compiled：最近编译方法的数量</li>
+<li>Size：最近编译方法的字节码数量</li>
+<li>Type：最近编译方法的编译类型。</li>
+<li>Method：方法名标识。</li>
+</ul>
+
       
     </div>
 
@@ -547,7 +668,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/RabbitMQ/" rel="tag"><i class="fa fa-tag"></i> RabbitMQ</a>
+            <a href="/tags/JDK/" rel="tag"><i class="fa fa-tag"></i> JDK</a>
+          
+            <a href="/tags/JVM/" rel="tag"><i class="fa fa-tag"></i> JVM</a>
           
         </div>
       
@@ -560,8 +683,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/08/Spring-boot导入XML配置/" rel="next" title="Spring-boot导入XML配置">
-                <i class="fa fa-chevron-left"></i> Spring-boot导入XML配置
+              <a href="/2019/04/03/JVM监控和故障处理工具/" rel="next" title="JVM监控和故障处理工具">
+                <i class="fa fa-chevron-left"></i> JVM监控和故障处理工具
               </a>
             
           </div>
@@ -569,10 +692,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/14/Centos配置yum源/" rel="prev" title="Centos配置yum源">
-                Centos配置yum源 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -620,17 +739,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -828,23 +938,6 @@
         </div>
       </div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Erlang"><span class="nav-number">1.</span> <span class="nav-text">安装Erlang</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装RabbitMQ"><span class="nav-number">2.</span> <span class="nav-text">安装RabbitMQ</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#管理界面"><span class="nav-number">3.</span> <span class="nav-text">管理界面</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
       
 
       

@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="hsun">
 <meta property="og:description" content="jpsJVM Process Status Tool，列出正在运行的虚拟机进程，并显示虚拟机执行主类（main class， main()函数所在的类）名称以及这些进程的本地虚拟机唯一ID 命令格式 1jps [options] [hostid] 命令样例1jps -l  jsp 可以通过RMI协议查询开启了RMI服务的远程虚拟机进程状态，hostid为RMI注册表中注册的主机名  jsp其他常用">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-13T09:14:53.625Z">
+<meta property="og:updated_time" content="2019-04-16T12:11:32.977Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM监控和故障处理工具">
 <meta name="twitter:description" content="jpsJVM Process Status Tool，列出正在运行的虚拟机进程，并显示虚拟机执行主类（main class， main()函数所在的类）名称以及这些进程的本地虚拟机唯一ID 命令格式 1jps [options] [hostid] 命令样例1jps -l  jsp 可以通过RMI协议查询开启了RMI服务的远程虚拟机进程状态，hostid为RMI注册表中注册的主机名  jsp其他常用">
@@ -426,7 +426,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-13 17:14:53" itemprop="dateModified" datetime="2019-04-13T17:14:53+08:00">2019-04-13</time>
+                <time title="修改时间：2019-04-16 20:11:32" itemprop="dateModified" datetime="2019-04-16T20:11:32+08:00">2019-04-16</time>
               
             
           </span>
@@ -519,9 +519,75 @@
 </tr>
 </tbody>
 </table>
-<h1 id="jstat"><a href="#jstat" class="headerlink" title="jstat"></a>jstat</h1><p>JVM Statistics Monitoring Tool，用于收集HotSpot虚拟机各方面的运行数据</p>
+<h1 id="jstat"><a href="#jstat" class="headerlink" title="jstat"></a>jstat</h1><p>JVM Statistics Monitoring Tool，用于监视虚拟机各种运行状态信息的命令行工具。它可以显示本地或者远程虚拟机进程中的类装载、内存、垃圾收集、JIT编译等运行数据</p>
+<p>命令格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstat [option vmid[interval[s|ms] [count]]]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果是远程虚拟机进程，则vmid格式为 [protocol:][//]lvmid[@hostname[:port]/servername]</p>
+</blockquote>
+<p>参数<strong>interval</strong>和<strong>count</strong>代表查询间隔和次数，如果省略这两个参数，说明只查询一次，假设需要每250毫秒查询一次进程9708垃圾收集情况，一共查询20次，命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstat -gc 9708 250 20</span><br></pre></td></tr></table></figure></p>
+<p>选项<strong>option</strong>代表用户希望查询的虚拟机信息，主要分为3类：类装载、垃圾收集、运行期编译状况，具体选项及作用参考下表</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-class</td>
+<td style="text-align:center">监视类装载、卸载数量、总空间以及类装载所耗费的时间</td>
+</tr>
+<tr>
+<td style="text-align:left">-gc</td>
+<td style="text-align:center">监视Java堆状况，包括Eden区、两个survivor区、老年代、永久代等的容量、已用空间、GC时间合计等信息</td>
+</tr>
+<tr>
+<td style="text-align:left">-gccapacity</td>
+<td style="text-align:center">监视内容与-gc基本相同，但输出主要关注Java堆各个区域使用到的最大、最小空间</td>
+</tr>
+<tr>
+<td style="text-align:left">-gcutil</td>
+<td style="text-align:center">监视内容与-gc基本相同，但输出主要关注已使用空间占总空间的百分比</td>
+</tr>
+<tr>
+<td style="text-align:left">-gccause</td>
+<td style="text-align:center">与-gcutil功能一样，但是会额外输出导致上次GC产生的原因</td>
+</tr>
+<tr>
+<td style="text-align:left">-gcnew</td>
+<td style="text-align:center">监视新生代GC状况</td>
+</tr>
+<tr>
+<td style="text-align:left">-gcnewcapacity</td>
+<td style="text-align:center">监视内容与-gcnew基本相同，输出主要关注使用到的最大、最小空间</td>
+</tr>
+<tr>
+<td style="text-align:left">-gcold</td>
+<td style="text-align:center">监视老年代GC状况</td>
+</tr>
+<tr>
+<td style="text-align:left">-gcoldcapacity</td>
+<td style="text-align:center">监视内容与-gcold基本相同，输出主要关注使用到的最大、最小空间</td>
+</tr>
+<tr>
+<td style="text-align:left">-gcpermcapacity</td>
+<td style="text-align:center">输出永久代使用到的最大、最小空间</td>
+</tr>
+<tr>
+<td style="text-align:left">-compiler</td>
+<td style="text-align:center">输出JIT编译器编译过的方法、耗时等信息</td>
+</tr>
+<tr>
+<td style="text-align:left">-printcompilation</td>
+<td style="text-align:center">输出已经被JIT编译的方法</td>
+</tr>
+</tbody>
+</table>
+<p><a href="./jstat执行样例分析.md">jstat执行样例分析</a></p>
 <h1 id="jinfo"><a href="#jinfo" class="headerlink" title="jinfo"></a>jinfo</h1><p>Configuration Info for Java，显示虚拟机配置信息</p>
-<h1 id="jmap"><a href="#jmap" class="headerlink" title="jmap"></a>jmap</h1><p>Memory Map for Java， 生成虚拟机的内存转储快照（heapdump文件）</p>
+<h1 id="jmap"><a href="#jmap" class="headerlink" title="jmap"></a>jmap</h1><p>Memory Map for Java， 生成虚拟机的内存转储快照（heapdump文件）<br>shang</p>
 <h1 id="jhat"><a href="#jhat" class="headerlink" title="jhat"></a>jhat</h1><p>JVM Heap Dump Browser，用户分析heapdump文件，它会建立一个HTTP/HTML服务器，让用户可以在浏览器上查看分析结果</p>
 <h1 id="jstack"><a href="#jstack" class="headerlink" title="jstack"></a>jstack</h1><p>Stack Trace for Java， 显示虚拟机的线程快照</p>
 
@@ -601,6 +667,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/04/16/jstat执行样例分析/" rel="prev" title="jstat执行样例分析">
+                jstat执行样例分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -674,7 +744,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

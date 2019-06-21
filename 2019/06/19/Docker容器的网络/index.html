@@ -114,7 +114,7 @@
 <meta property="og:description" content="容器的网络网络模式安装Docker时，它会自动创建三个网络，采用docker network ls可以查看 12345[root@bogon ~]# docker network lsNETWORK ID          NAME                DRIVER              SCOPEcba3cf7c66f5        bridge              bri">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/hsun924/imgs/master/20190619155207.png">
-<meta property="og:updated_time" content="2019-06-19T07:58:32.127Z">
+<meta property="og:updated_time" content="2019-06-19T09:13:58.123Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker容器的网络">
 <meta name="twitter:description" content="容器的网络网络模式安装Docker时，它会自动创建三个网络，采用docker network ls可以查看 12345[root@bogon ~]# docker network lsNETWORK ID          NAME                DRIVER              SCOPEcba3cf7c66f5        bridge              bri">
@@ -411,7 +411,7 @@
                 
               
 
-              <time title="创建时间：2019-06-19 15:55:51 / 修改时间：15:58:32" itemprop="dateCreated datePublished" datetime="2019-06-19T15:55:51+08:00">2019-06-19</time>
+              <time title="创建时间：2019-06-19 15:55:51 / 修改时间：17:13:58" itemprop="dateCreated datePublished" datetime="2019-06-19T15:55:51+08:00">2019-06-19</time>
             
 
             
@@ -481,7 +481,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --rm --name bb_host --net host busybox sh</span><br></pre></td></tr></table></figure>
 <p>当我们在容器中执行任何类似<strong>ifconfig</strong>命令查看网络环境时，看到的都是宿主机上的信息。而外界访问容器中的应用，则直接使用宿主机IP:端口即可，不用任何NAT转换，就如直接跑在宿主机中一样。但是，容器的其他方面，如文件系统、进程列表等还是和宿主机隔离的。</p>
 <h3 id="bridge"><a href="#bridge" class="headerlink" title="bridge"></a>bridge</h3><p>相当于VM的NAT模式，是Docker容器的默认网络模式，也是最常用的一种;容器使用独立network Namespace，并连接到docker0虚拟网卡（默认模式）。通过docker0网桥以及Iptables nat表配置与宿主机通信；此模式会为每一个容器分配Network Namespace、设置IP等，并将一个主机上的Docker容器连接到一个虚拟网桥上。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --rm --name bb_host [--net bridge] busybox sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --rm --name bb_bridge [--net bridge] busybox sh</span><br></pre></td></tr></table></figure>
 <h2 id="bridge模式详解"><a href="#bridge模式详解" class="headerlink" title="bridge模式详解"></a>bridge模式详解</h2><p>查看宿主机的网络环境，会发现有一个名为<strong>docker0</strong>的虚拟网桥，它是Docker server启动时，在主机上创建；此主机上启动的Docker容器会连接到这个虚拟网桥上。虚拟网桥的工作方式和物理交换机类似，这样主机上的所有容器就通过交换机连在了一个二层网络中。接下来就要为容器分配IP了，Docker会从RFC1918所定义的私有IP网段中，选择一个和宿主机不同的IP地址和子网分配给docker0，连接到docker0的容器就从这个子网中选择一个未占用的IP使用。<br>如一般Docker会使用172.17.0.0/16这个网段，并将172.17.0.1/16分配给docker0网桥（在主机上使用ifconfig命令是可以看到docker0的，可以认为它是网桥的管理接口，在宿主机上作为一块虚拟网卡使用）。单机环境下的网络拓扑如下</p>
 <p><img src="https://raw.githubusercontent.com/hsun924/imgs/master/20190619155207.png" alt></p>
 <p>Docker完成以上网络配置的过程大致是这样的：</p>
@@ -495,15 +495,15 @@
 </ol>
 <p>通过这种方式，主机可以跟容器通信，容器之间也可以相互通信，Docker就创建一个了在主机和所有容器之间虚拟共享网络</p>
 <h3 id="bridge模式容器的通信"><a href="#bridge模式容器的通信" class="headerlink" title="bridge模式容器的通信"></a>bridge模式容器的通信</h3><p>在bridge模式下，连在同一网桥上的容器可以相互通信；那么容器如何与外部通信呢？</p>
-<p>我们前面说过Docker通过虚拟网桥以及iptables nat表配置与宿主机通信，我们看一下主机上的iptables规则（iptables-save &gt; /etc/sysconfig/iptables），<br>可以看到这么一条</p>
+<p>Docker通过虚拟网桥以及iptables nat表配置与宿主机通信，我们看一下主机上的iptables规则（iptables-save &gt; /etc/sysconfig/iptables），<br>可以看到这么一条</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-A POSTROUTING -s 172.17.0.0/16 ! -o docker0 -j MASQUERADE</span><br></pre></td></tr></table></figure>
 <p>这条规则会将源地址为172.17.0.0/16的包（也就是从Docker容器产生的包），并且不是从docker0网卡发出的，<br>进行源地址转换，转换成主机网卡的地址。</p>
-<p>举一个例子说明一下，假设主机有一块网卡为eth0，IP地址为10.211.55.11/24，网关为10.211.55.254。从一个IP为172.17.0.1/16的容器中ping百度。IP包首先从容器发往自己的默认网关docker0，包到达docker0后，也就到达了主机上。然后会查询主机的路由表，发现包应该从主机的eth0发往主机的网关10.10.105.254/24。接着包会转发给eth0，并从eth0发出去。这时候，上面的iptables规则就会起作用，对包做SNAT转换，将源地址换为eth0的地址。这样，在外界看来，这个包就是从10.211.55.11上发出来的，Docker容器对外是不可见的。</p>
+<p>举一个例子说明一下，假设主机有一块网卡为eth0，IP地址为10.211.55.11/24，网关为10.211.55.1。从一个IP为172.17.0.1/16的容器中ping百度。IP包首先从容器发往自己的默认网关docker0，包到达docker0后，也就到达了主机上。然后会查询主机的路由表，发现包应该从主机的eth0发往主机的网关10.10.105.1/24。接着包会转发给eth0，并从eth0发出去。这时候，上面的iptables规则就会起作用，对包做SNAT转换，将源地址换为eth0的地址。这样，在外界看来，这个包就是从10.211.55.11上发出来的，Docker容器对外是不可见的。</p>
 <p>外面的机器是如何访问Docker容器的服务呢？<br>我们首先用下面命令创建一个含有web应用的容器，将容器的8080端口映射到主机的80端口。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 8080:80 --name ng_web -d nginx</span><br></pre></td></tr></table></figure>
 <p>我们看一下主机上的iptables规则，可以看到这么一条</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-A DOCKER ! -i docker0 -p tcp -m tcp --dport 8080 -j DNAT --to-destination 172.17.0.2:80</span><br></pre></td></tr></table></figure>
-<p>此条规则就是对主机eth0收到的目的端口为8080的tcp流量进行DNAT转换，将流量发往172.17.0.2:80，也就是我们上面创建的Docker容器。所以，外界只需访问10.211.55.11:8080就可以访问到容器中的服务。</p>
+<p>此条规则就是对主机收到的目的端口为8080的tcp流量进行DNAT转换，将流量发往172.17.0.2:80，也就是我们上面创建的Docker容器。所以，外界只需访问10.211.55.11:8080就可以访问到容器中的服务。</p>
 <h2 id="自定义网桥"><a href="#自定义网桥" class="headerlink" title="自定义网桥"></a>自定义网桥</h2><p>启动 Docker 时，会自动创建默认的桥接网络，也就是我们所说的<strong>docker0</strong>,新启动的容器如果没有特别指定都会连接到这个默认桥接网络。在同一网桥下的docker容器是默认互通的，除非特别指定（可以禁止它们之间通信，方法是在DOCKER_OPTS变量中设置–icc=false，这样只有使用–link才能使两个容器通信）；</p>
 <p>如果说出于安全考虑，一般情况下建议使用自定义的网桥来控制哪些容器可以相互通信。</p>
 <p>用户可以通过<strong>docker network create</strong>来创建和配置自定义网桥，驱动程序使用 -d [bridge/macvlan] 来指定，本次我们使用bridge</p>
@@ -586,6 +586,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/06/21/一行命令kill掉你的进程/" rel="prev" title="一行命令kill掉你的进程">
+                一行命令kill掉你的进程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -659,7 +663,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -787,7 +791,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

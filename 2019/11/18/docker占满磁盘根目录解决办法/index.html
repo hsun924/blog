@@ -105,18 +105,18 @@
 
 
 
-  <meta name="description" content="初始安装docker，可以设置后台进程参数1-g, --graph=&amp;quot;/var/lib/docker&amp;quot; 来指定运行时根目录 docker默认将所有容器的卷文件都放置在了/var/lib/docker/volumns下，当容器使用的东西越来越多，这个目录占用根目录空间也越来越多，所以当根目录空间较小时，迁移/var/lib/docker目录势在必行，迁移步骤如下： 停止docke">
+  <meta name="description" content="初始安装docker，可以设置以下后台进程参数来指定运行时根目录1-g, --graph=&amp;quot;/var/lib/docker&amp;quot; docker默认将所有容器的卷文件都放置在了/var/lib/docker/volumns下，当容器使用的东西越来越多，这个目录占用根目录空间也越来越多，所以当根目录空间较小时，迁移/var/lib/docker目录势在必行，迁移步骤如下： 停止dock">
 <meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker占满磁盘根目录解决办法">
 <meta property="og:url" content="http://www.hsuns.com/2019/11/18/docker占满磁盘根目录解决办法/index.html">
 <meta property="og:site_name" content="hsun">
-<meta property="og:description" content="初始安装docker，可以设置后台进程参数1-g, --graph=&amp;quot;/var/lib/docker&amp;quot; 来指定运行时根目录 docker默认将所有容器的卷文件都放置在了/var/lib/docker/volumns下，当容器使用的东西越来越多，这个目录占用根目录空间也越来越多，所以当根目录空间较小时，迁移/var/lib/docker目录势在必行，迁移步骤如下： 停止docke">
+<meta property="og:description" content="初始安装docker，可以设置以下后台进程参数来指定运行时根目录1-g, --graph=&amp;quot;/var/lib/docker&amp;quot; docker默认将所有容器的卷文件都放置在了/var/lib/docker/volumns下，当容器使用的东西越来越多，这个目录占用根目录空间也越来越多，所以当根目录空间较小时，迁移/var/lib/docker目录势在必行，迁移步骤如下： 停止dock">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-18T06:10:25.683Z">
+<meta property="og:updated_time" content="2019-11-18T06:20:42.321Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker占满磁盘根目录解决办法">
-<meta name="twitter:description" content="初始安装docker，可以设置后台进程参数1-g, --graph=&amp;quot;/var/lib/docker&amp;quot; 来指定运行时根目录 docker默认将所有容器的卷文件都放置在了/var/lib/docker/volumns下，当容器使用的东西越来越多，这个目录占用根目录空间也越来越多，所以当根目录空间较小时，迁移/var/lib/docker目录势在必行，迁移步骤如下： 停止docke">
+<meta name="twitter:description" content="初始安装docker，可以设置以下后台进程参数来指定运行时根目录1-g, --graph=&amp;quot;/var/lib/docker&amp;quot; docker默认将所有容器的卷文件都放置在了/var/lib/docker/volumns下，当容器使用的东西越来越多，这个目录占用根目录空间也越来越多，所以当根目录空间较小时，迁移/var/lib/docker目录势在必行，迁移步骤如下： 停止dock">
 
 
 
@@ -409,7 +409,7 @@
                 
               
 
-              <time title="创建时间：2019-11-18 11:39:35 / 修改时间：14:10:25" itemprop="dateCreated datePublished" datetime="2019-11-18T11:39:35+08:00">2019-11-18</time>
+              <time title="创建时间：2019-11-18 11:39:35 / 修改时间：14:20:42" itemprop="dateCreated datePublished" datetime="2019-11-18T11:39:35+08:00">2019-11-18</time>
             
 
             
@@ -466,8 +466,7 @@
       
 
       
-        <p>初始安装docker，可以设置后台进程参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-g, --graph=&quot;/var/lib/docker&quot;</span><br></pre></td></tr></table></figure></p>
-<p>来指定运行时根目录</p>
+        <p>初始安装docker，可以设置以下后台进程参数来指定运行时根目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-g, --graph=&quot;/var/lib/docker&quot;</span><br></pre></td></tr></table></figure></p>
 <p>docker默认将所有容器的卷文件都放置在了/var/lib/docker/volumns下，当容器使用的东西越来越多，这个目录占用根目录空间也越来越多，所以当根目录空间较小时，迁移/var/lib/docker目录势在必行，迁移步骤如下：</p>
 <h2 id="停止docker服务"><a href="#停止docker服务" class="headerlink" title="停止docker服务"></a>停止docker服务</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop docker</span><br></pre></td></tr></table></figure>
 <h2 id="备份docker到最大分区-home目录下面"><a href="#备份docker到最大分区-home目录下面" class="headerlink" title="备份docker到最大分区/home目录下面"></a>备份docker到最大分区/home目录下面</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv /var/lib/docker/ /home/</span><br></pre></td></tr></table></figure>

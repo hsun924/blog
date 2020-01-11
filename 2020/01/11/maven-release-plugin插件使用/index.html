@@ -105,18 +105,18 @@
 
 
 
-  <meta name="description" content="Release插件是Apache Maven团队提供的官方插件，能够为项目代码库打tag，并将项目代码库中的代码发布到SCM的新版本。 配置SCM信息1234&amp;lt;!--版本库信息--&amp;gt;&amp;lt;scm&amp;gt;	&amp;lt;developerConnection&amp;gt;scm:git:git@github.com:hsun924/release-demo.git&amp;lt;/developerCon">
+  <meta name="description" content="Release插件是Apache Maven团队提供的官方插件，能够为项目代码库打tag，并将项目代码库中的代码发布到SCM的新版本。 官网地址 配置SCM信息1234&amp;lt;!--版本库信息--&amp;gt;&amp;lt;scm&amp;gt;	&amp;lt;developerConnection&amp;gt;scm:git:git@github.com:hsun924/release-demo.git&amp;lt;/develop">
 <meta name="keywords" content="maven">
 <meta property="og:type" content="article">
 <meta property="og:title" content="maven-release-plugin插件使用">
 <meta property="og:url" content="http://www.hsuns.com/2020/01/11/maven-release-plugin插件使用/index.html">
 <meta property="og:site_name" content="hsun">
-<meta property="og:description" content="Release插件是Apache Maven团队提供的官方插件，能够为项目代码库打tag，并将项目代码库中的代码发布到SCM的新版本。 配置SCM信息1234&amp;lt;!--版本库信息--&amp;gt;&amp;lt;scm&amp;gt;	&amp;lt;developerConnection&amp;gt;scm:git:git@github.com:hsun924/release-demo.git&amp;lt;/developerCon">
+<meta property="og:description" content="Release插件是Apache Maven团队提供的官方插件，能够为项目代码库打tag，并将项目代码库中的代码发布到SCM的新版本。 官网地址 配置SCM信息1234&amp;lt;!--版本库信息--&amp;gt;&amp;lt;scm&amp;gt;	&amp;lt;developerConnection&amp;gt;scm:git:git@github.com:hsun924/release-demo.git&amp;lt;/develop">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-11T07:58:25.164Z">
+<meta property="og:updated_time" content="2020-01-11T08:10:41.427Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="maven-release-plugin插件使用">
-<meta name="twitter:description" content="Release插件是Apache Maven团队提供的官方插件，能够为项目代码库打tag，并将项目代码库中的代码发布到SCM的新版本。 配置SCM信息1234&amp;lt;!--版本库信息--&amp;gt;&amp;lt;scm&amp;gt;	&amp;lt;developerConnection&amp;gt;scm:git:git@github.com:hsun924/release-demo.git&amp;lt;/developerCon">
+<meta name="twitter:description" content="Release插件是Apache Maven团队提供的官方插件，能够为项目代码库打tag，并将项目代码库中的代码发布到SCM的新版本。 官网地址 配置SCM信息1234&amp;lt;!--版本库信息--&amp;gt;&amp;lt;scm&amp;gt;	&amp;lt;developerConnection&amp;gt;scm:git:git@github.com:hsun924/release-demo.git&amp;lt;/develop">
 
 
 
@@ -409,7 +409,7 @@
                 
               
 
-              <time title="创建时间：2020-01-11 15:53:57 / 修改时间：15:58:25" itemprop="dateCreated datePublished" datetime="2020-01-11T15:53:57+08:00">2020-01-11</time>
+              <time title="创建时间：2020-01-11 15:53:57 / 修改时间：16:10:41" itemprop="dateCreated datePublished" datetime="2020-01-11T15:53:57+08:00">2020-01-11</time>
             
 
             
@@ -467,6 +467,7 @@
 
       
         <p>Release插件是Apache Maven团队提供的官方插件，能够为项目代码库打tag，并将项目代码库中的代码发布到SCM的新版本。</p>
+<p><a href="http://maven.apache.org/maven-release/maven-release-plugin/" target="_blank" rel="noopener">官网地址</a></p>
 <h2 id="配置SCM信息"><a href="#配置SCM信息" class="headerlink" title="配置SCM信息"></a>配置SCM信息</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--版本库信息--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">scm</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">developerConnection</span>&gt;</span>scm:git:git@github.com:hsun924/release-demo.git<span class="tag">&lt;/<span class="name">developerConnection</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">scm</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="配置仓库信息"><a href="#配置仓库信息" class="headerlink" title="配置仓库信息"></a>配置仓库信息</h2><p>可以实现自动发布到maven仓库</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--maven仓库信息--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">distributionManagement</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>xdja-deploy<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>Releases<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://192.168.9.117:8081/nexus/content/repositories/releases/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">snapshotRepository</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>xdja-deploy<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>snapshots<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://192.168.9.117:8081/nexus/content/repositories/snapshots/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">snapshotRepository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">distributionManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
